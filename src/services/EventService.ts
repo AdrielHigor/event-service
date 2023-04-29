@@ -57,6 +57,6 @@ export class EventService {
     const { id } = req.params;
     this.eventRepository.delete(Number(id));
 
-    return res.status(200);
+    return res.status(200).send();
   }
 }

@@ -37,6 +37,6 @@ export class LocationService {
     const { id } = req.params;
     this.locationRepository.delete(Number(id));
 
-    return res.status(200);
+    return res.status(200).send();
   }
 }
