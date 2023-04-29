@@ -1,6 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import db from '..';
-import { AllowNull } from 'sequelize-typescript';
+import Location from './Location';
 
 class Event extends Model {
   public id!: number;
@@ -54,5 +54,7 @@ Event.init(
     underscored: true,
   },
 );
+
+Event.belongsTo(Location, { as: 'location' })
 
 export default Event;

@@ -2,6 +2,7 @@ import "reflect-metadata";
 import "./controllers";
 import "./db";
 import bodyParser from "body-parser";
+import cors from "cors";
 import Constants from "./utils/constants";
 import { Container } from "inversify";
 import { InversifyExpressServer } from "inversify-express-utils";
@@ -36,6 +37,8 @@ server.setConfig((app) => {
   app.use(bodyParser.urlencoded({
     extended: true,
   }));
+
+  app.use(cors());
 
   app.use(bodyParser.json());
 })

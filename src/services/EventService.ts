@@ -9,6 +9,10 @@ import LocationRepository from '../repositories/LocationRepository';
 export class EventService {
   constructor(@inject('EventRepository') private eventRepository: EventRepository, @inject('LocationRepository') private locationRepository: LocationRepository) { }
 
+  async selectAll(req: Request, res: Response): Promise<Array<Event>> {
+    return this.eventRepository.findAll();
+  }
+
   async selectAllPaginated(req: Request, res: Response): Promise<Pagination<Event>> {
     return this.eventRepository.findAllPaginated();
   }

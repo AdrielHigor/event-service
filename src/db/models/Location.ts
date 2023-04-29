@@ -1,4 +1,4 @@
-import { Model, DataTypes, Sequelize, GEOMETRY } from 'sequelize';
+import { Model, DataTypes, GEOMETRY } from 'sequelize';
 import db from '..';
 
 class Location extends Model {

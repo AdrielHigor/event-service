@@ -28,6 +28,11 @@ export class EventController extends BaseHttpController implements interfaces.Co
     return this.eventService.selectAllPaginated(req, res);
   }
 
+  @httpGet('/all')
+  private findAll(@request() req: Request, @response() res: Response, @next() next: NextFunction):Promise<Array<Event>> {
+    return this.eventService.selectAll(req, res);
+  }
+
   @httpPost('/')
   private create(@request() req: Request, @response() res: Response, @next() next: NextFunction): Promise<Event> {
     return this.eventService.createEvent(req, res);
