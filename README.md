@@ -9,7 +9,7 @@ Para instalar a API, siga estas etapas:
 1. Clone o repositório: `git clone https://github.com/username/repository.git`
 2. Instale as dependências: `npm install`
 3. Configure as contantes de conexão com database em contansts.ts e config.js
-4. Execute: `npx sequelize db:migrate`
+4. Execute: `npx sequelize-cli db:migrate`
 5. Execute: `npm run dev`
 
 ## Instalação Docker
