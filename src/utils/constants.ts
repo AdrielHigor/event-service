@@ -3,11 +3,11 @@ import { Options } from "sequelize";
 export default class Constants {
   static port = "3002";
   static database: Options = {
-    database: 'postgres',
-    username: 'postgres',
-    password: 'postgres',
-    host: '127.0.0.1',
-    port: 5432,
+    database: 'event',
+    username: 'admin',
+    password: 'admin123',
+    host: '172.17.0.1',
+    port: 8001,
     dialect: 'postgres',
     logging: console.log,
   }

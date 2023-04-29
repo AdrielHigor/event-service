@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  event-services-node:
+    container_name: event-service
+    image: node:16.14
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "3002:3002"
+    networks:
+      - event-mapper-network
+    command: bash -c "npm install && npx sequelize-cli db:migrate && npm run dev"
+    depends_on:
+      - event-postgres
+  
+  event-postgres:
+    container_name: event-postgres
+    image: kartoza/postgis:15-3.3
+    volumes:
+      - pgdata:/var/lib/postgresql
+    environment:
+      - POSTGRES_DB=event
+      - POSTGRES_USER=admin
+      - POSTGRES_PASS=admin123
+      - POSTGRES_MULTIPLE_EXTENSIONS=postgis,hstore,postgis_topology,postgis_raster,pgrouting
+      - RUN_AS_ROOT=true
+    ports:
+      - "8001:5432"
+    restart: unless-stopped
+    networks:
+      - event-mapper-network
+volumes:
+  pgdata:
+networks:
+  event-mapper-network:
