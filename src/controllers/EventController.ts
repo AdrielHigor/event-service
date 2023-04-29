@@ -8,6 +8,8 @@ import {
   next,
   BaseHttpController,
   httpPost,
+  httpPut,
+  httpDelete,
 } from 'inversify-express-utils';
 import { inject } from 'inversify';
 
@@ -29,12 +31,27 @@ export class EventController extends BaseHttpController implements interfaces.Co
   }
 
   @httpGet('/all')
-  private findAll(@request() req: Request, @response() res: Response, @next() next: NextFunction):Promise<Array<Event>> {
+  private findAll(@request() req: Request, @response() res: Response, @next() next: NextFunction): Promise<Array<Event>> {
     return this.eventService.selectAll(req, res);
+  }
+
+  @httpGet('/:id')
+  private findById(@request() req: Request, @response() res: Response, @next() next: NextFunction): Promise<Event | null> {
+    return this.eventService.selectById(req, res);
   }
 
   @httpPost('/')
   private create(@request() req: Request, @response() res: Response, @next() next: NextFunction): Promise<Event> {
     return this.eventService.createEvent(req, res);
+  }
+
+  @httpPut('/:id')
+  private updateById(@request() req: Request, @response() res: Response, @next() next: NextFunction): Promise<[Number, Event[]]> {
+    return this.eventService.updateById(req, res);
+  }
+
+  @httpDelete('/:id')
+  private deleteById(@request() req: Request, @response() res: Response, @next() next: NextFunction): Promise<Response> {
+    return this.eventService.deleteById(req, res);
   }
 }

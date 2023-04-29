@@ -12,6 +12,11 @@ export class LocationService {
     return this.locationRepository.findAllPaginated();
   }
 
+  async selectById(req: Request, res: Response): Promise<Location | null> {
+    const { id } = req.params;
+    return this.locationRepository.findById(Number(id));
+  }
+
   async createLocation(req: Request, res: Response): Promise<Location> {
     const { lat, lng } = req.body;
     const objToCreate = {
@@ -19,5 +24,19 @@ export class LocationService {
     }
 
     return this.locationRepository.create(objToCreate);
+  }
+
+  async updateById(req: Request, res: Response): Promise<[Number, Location[]]> {
+    const { id } = req.params;
+    const objToUpdate = req.body;
+
+    return this.locationRepository.update(Number(id), objToUpdate);
+  }
+
+  async deleteById(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    this.locationRepository.delete(Number(id));
+
+    return res.status(200);
   }
 }

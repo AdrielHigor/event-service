@@ -26,7 +26,11 @@ Esta API possui os seguintes endpoints:
 
 #### `GET /event`
 
-Retorna uma lista de todos os eventos.
+Retorna uma lista paginada de todos os eventos.
+
+#### `GET /event/all`
+
+Retorna uma lista sem paginação de todos os eventos.
 
 #### `GET /event/:id`
 
@@ -48,7 +52,7 @@ Exclui o evento com o ID especificado.
 
 #### `GET /location`
 
-Retorna uma lista de todos os locais.
+Retorna uma lista paginada de todos os locais.
 
 #### `GET /location/:id`
 

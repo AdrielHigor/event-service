@@ -13,6 +13,11 @@ export class EventService {
     return this.eventRepository.findAll();
   }
 
+  async selectById(req: Request, res: Response): Promise<Event | null> {
+    const { id } = req.params;
+    return this.eventRepository.findById(Number(id));
+  }
+
   async selectAllPaginated(req: Request, res: Response): Promise<Pagination<Event>> {
     return this.eventRepository.findAllPaginated();
   }
@@ -39,5 +44,19 @@ export class EventService {
     }
 
     return this.eventRepository.create(objToSave);
+  }
+
+  async updateById(req: Request, res: Response): Promise<[Number, Event[]]> {
+    const { id } = req.params;
+    const objToUpdate = req.body;
+
+    return this.eventRepository.update(Number(id), objToUpdate);
+  }
+
+  async deleteById(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    this.eventRepository.delete(Number(id));
+
+    return res.status(200);
   }
 }
